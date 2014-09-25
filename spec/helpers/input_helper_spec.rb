@@ -942,14 +942,12 @@ describe 'FormtasticBootstrap::FormBuilder#input' do
 
         it 'should use FormtasticBootstrap::Inputs as default scope' do
           stub_const 'FormtasticBootstrap::Inputs::NewStringInput', formtastic_bootstrap_input
-          expect(subject.input_class_with_const_defined(:new_string))
-            .to_not raise_error(Formtastic::UnknownInputError)
+          expect(subject.input_class_with_const_defined(:new_string)).to_not raise_error(Formtastic::UnknownInputError)
         end
 
         it 'should using Formtastic::Inputs namespace if there is no class in FormtasticBootstrap::Inputs' do
           stub_const 'Formtastic::Inputs::NewStringInput', formtastic_input
-          expect(subject.input_class_with_const_defined(:new_string))
-            .to_not raise_error(Formtastic::UnknownInputError)
+          expect(subject.input_class_with_const_defined(:new_string)).to_not raise_error(Formtastic::UnknownInputError)
         end
 
         it 'should prefate FormtasticBootstrap namespace to Formtastic' do
