@@ -665,13 +665,13 @@ describe 'FormtasticBootstrap::FormBuilder#input' do
           output_buffer.should have_tag("form div p.inline-hints", hint_text)
         end
 
-				it 'should have a custom hint class if I ask for one' do
+        it 'should have a custom hint class if I ask for one' do
           with_deprecation_silenced do
             hint_text = "this is the title of the post"
             concat(semantic_form_for(@new_post) do |builder|
               concat(builder.input(:title, :hint => hint_text, :hint_class => 'custom-hint-class'))
             end)
-            output_buffer.should have_tag("form div p.custom-hint-class", hint_text)
+            output_buffer.should have_tag("form div span.custom-hint-class", hint_text)
           end
         end
 
@@ -681,7 +681,7 @@ describe 'FormtasticBootstrap::FormBuilder#input' do
           concat(semantic_form_for(@new_post) do |builder|
             concat(builder.input(:title, :hint => hint_text))
           end)
-          output_buffer.should have_tag("form div p.custom-hint-class", hint_text)
+          output_buffer.should have_tag("form div span.custom-hint-class", hint_text)
         end
       end
 
@@ -720,7 +720,7 @@ describe 'FormtasticBootstrap::FormBuilder#input' do
               end
             end
 
-						it 'should render a hint paragraph containing a localized hint (I18n) with a custom hint class if i ask for one' do
+            it 'should render a hint paragraph containing a localized hint (I18n) with a custom hint class if i ask for one' do
               with_config :i18n_lookups_by_default, false do
                 ::I18n.backend.store_translations :en,
                 :formtastic => {
@@ -735,7 +735,7 @@ describe 'FormtasticBootstrap::FormBuilder#input' do
                     concat(builder.input(:title, :hint => true, :hint_class => 'custom-hint-class'))
                   end)
                 end
-                output_buffer.should have_tag('form div p.custom-hint-class', @localized_hint_text)
+                output_buffer.should have_tag('form div span.custom-hint-class', @localized_hint_text)
               end
             end
 
